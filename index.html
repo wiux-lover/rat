@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forever rat</title>
+</head>
+<body>
+    <h1>rat</h1>
+    <button id="startButton">start ratting</button>
+    <button id="stopButton">stop ratting</button>
+
+    <script>
+        var mp4Url = 'horizontally-spinning-rat.mp4';
+        var downloadInterval;
+        function startContinuousDownload() {
+            downloadInterval = setInterval(function() {
+                var link = document.createElement('a');
+                link.href = mp4Url;
+                link.download = 'horizontally-spinning-rat-' + Date.now() + '.mp4'; //timestamp+horizontally-spinning-rat and .mp4 so it's easily playable
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }, 1000); //this is every millisecond, change depending on how beefy your computer is
+        }
+
+        function stopContinuousDownload() {
+            clearInterval(downloadInterval);
+        }
+
+        document.getElementById('startButton').addEventListener('click', startContinuousDownload);
+        document.getElementById('stopButton').addEventListener('click', stopContinuousDownload);
+    </script>
+</body>
+</html>
